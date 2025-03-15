@@ -51,16 +51,16 @@ st.title("Horoscope Analysis with AI")
 birth_date = st.date_input("Enter your birth date:", datetime.date(1990, 1, 1))
 birth_time = st.time_input("Enter your birth time:", datetime.time(12, 0))
 
+day = birth_date.day
+month = birth_date.month
+year = birth_date.year
+hour = birth_time.hour
+minute = birth_time.minute
+
+zodiac_sign = calculate_zodiac_sign(day, month)
+planetary_positions = calculate_planetary_positions(year, month, day, hour, minute)
+
 if st.button("Get Horoscope"):
-    day = birth_date.day
-    month = birth_date.month
-    year = birth_date.year
-    hour = birth_time.hour
-    minute = birth_time.minute
-
-    zodiac_sign = calculate_zodiac_sign(day, month)
-    planetary_positions = calculate_planetary_positions(year, month, day, hour, minute)
-
     st.write(f"Your Zodiac Sign: {zodiac_sign}")
     st.write(f"Planetary Positions (Simplified): {planetary_positions}")
 
