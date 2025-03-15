@@ -131,8 +131,11 @@ st.subheader("Daily Horoscope")
 if st.button("Get Daily Horoscope"):
     try:
         response = requests.post(f"https://aztro.sameerkumar.website/?sign={zodiac_sign.lower()}&day=today")
-        daily_horoscope = response.json()
-        st.write(f"Today's Horoscope for {zodiac_sign}: {daily_horoscope['description']}")
+        if response.status_code == 200:
+            daily_horoscope = response.json()
+            st.write(f"Today's Horoscope for {zodiac_sign}: {daily_horoscope['description']}")
+        else:
+            st.error(f"Error fetching daily horoscope: {response.status_code}")
     except Exception as e:
         st.error(f"Error fetching daily horoscope: {e}")
 
